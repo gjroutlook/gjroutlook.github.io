@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+        <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+        <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.lime-blue.min.css" />
+        <style>
+            #menu {
+                background-color: #00695C;
+                height: 60px;
+                width: 65px;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+            }
+
+            #search {
+                background-color: #00695C;
+                height: 60px;
+                width: 100%;
+                margin-left: 65px;
+                margin-right: 65px;
+            }
+
+            #options {
+                background-color: #00695C;
+                height: 60px;
+                width: 65px;
+                position: absolute;
+                right: 0px;
+                top: 0px;
+            }
+
+            body {
+                margin: 0px;
+                width: 100%;
+                font-family: 'Roboto', sans-serif;
+            }
+
+            #page {
+                width: 100%;
+            }
+
+            #content {
+                width: 100%;
+                height: 100%;
+                background-color: orange;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                margin-top: 60px;
+            }
+
+            #map {
+                height: 100%;
+                width: 100%;
+            }
+
+            #search_box {
+                width: 89.5%;
+                border-color: #A7FFEB;
+                background-color: #A7FFEB;
+                font-size: 25px;
+            }
+
+            #drawer {
+                background-color: #4DB6AC;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                height: 100%;
+                width: 300px;
+            }
+
+            #card1 {
+                background-color: #A7FFEB;
+                width: 278px;
+                height: 200px;
+                margin-left: 10px;
+                margin-top: 20px;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            }
+
+            #title {
+                margin-left: 10px;
+                color: white;
+            }
+
+            .material-icons.md-light { 
+                color: rgba(255, 255, 255, 1); 
+            }
+
+            #demo-menu-lower-right {
+                size: 900%
+            }
+
+            #FAB_1 {
+                margin-left: 230px;
+                margin-top: 7px;
+            }
+
+            #FAB_2 {
+                margin-left: 230px;
+                margin-top: 70px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="page">
+            <div id="menu">
+                <i class="material-icons md-light">menu</i>
+            </div>
+            <div id="search">
+                <div id+"padding_extra">
+                    <input id="search_box" type="text" placeholder="search the world!"/>
+                </div>
+            </div>
+            <div id="options">
+                <!-- Right aligned menu below button -->
+                <button id="demo-menu-lower-right"
+                        class="mdl-button mdl-js-button mdl-button--icon">
+                <i class="material-icons md-light">more_vert</i>
+                </button>
+
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+                    for="demo-menu-lower-right">
+                <li class="mdl-menu__item">Open in New Tab</li>
+                <li disabled class="mdl-menu__item">Sign In with Google</li>
+                <li class="mdl-menu__item">Add to your Site</li>
+                <li class="mdl-menu__item">Settings</li>
+                </ul>
+            </div>
+            <div id="content">
+                <div id="map">
+                    <div id="card1">
+                        
+                    </div>
+                </div>
+                <div id="drawer" style="transform: translateX(-300px)">
+                    <h1 id="title">Directions</h1>
+                    <div id="card1">
+                        <button id="FAB_2" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                            <i class="material-icons">directions</i>
+                        </button>
+                        <!-- Colored FAB button with ripple -->
+                        <button id="FAB_1" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                            <i class="material-icons">add_location</i>
+                        </button>
+                    </div>
+                    <div id="card1">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function initMap() {
+                var uluru = {lat: -25.363, lng: 131.044};
+                var mapElement = document.getElementById('map');
+                var map = new google.maps.Map(mapElement, {
+                    zoom: 4,
+                    center: uluru
+                });
+            }
+
+            var drawerOpen = false
+            menu.addEventListener("click", function () {
+                console.log("hello")
+                if (drawerOpen == false){
+                    drawer.animate([
+                        { transform: "translateX(-300px)" },
+                        { transform: "translateX(0px)" }
+                    ],
+                    {
+                        duration: 400,
+                        iterations: 1,
+                        fill: "forwards",
+                        easing: "ease-out",
+                    }
+                    )
+                    drawerOpen = true
+                }
+                else {
+                    drawer.animate([
+                        { transform: "translateX(0px)" },
+                        { transform: "translateX(-300px)" }
+                    ],
+                    {
+                        duration: 400,
+                        iterations: 1,
+                        fill: "forwards",
+                        easing: "ease-out",
+                    }
+                    )
+                    drawerOpen = false
+                }
+            } )
+        </script>
+        <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXoTMwPzstcILYPf8KnQ3KSsZwS10u9uI&callback=initMap">
+        </script>
+    </body>
+</html>
